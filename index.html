@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>xbc</title>
+
+    <style type="text/css" id="style">
+      html, body, #content {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        border: none;
+      }
+    </style>
+    <style type="text/css">
+      #help {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="help">
+      pid, lang, fhost, fid, name
+    </p>
+
+    <script type="text/javascript">
+      function parseQuery() {
+        let ret = {};
+        window.location.search.substr(1).split('&').forEach(query => {
+          const pair = query.split('=');
+          ret[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+        });
+        return ret;
+      }
+
+      function generateQuery(data) {
+        let ret = '';
+        for (let i in data) {
+          ret += '&' + encodeURIComponent(i) + '=' + encodeURIComponent(data[i]);
+        }
+        ret = ret.substr(1);
+        return ret;
+      }
+
+      /*
+      function escapeHTML(str) {
+        return str.replace(/[&"'<>]/g, c => ({
+          '&': '&amp;',
+          '"': '&quot;',
+          "'": '&apos;',
+          '<': '&lt;',
+          '>': '&gt;',
+        }[c]));
+      }
+      //*/
+
+      function codecString(str) {
+        return str.split('').map(c => String.fromCharCode(c.charCodeAt(0) ^ 5)).join('');
+      }
+
+
+      const query = parseQuery();
+
+
+      const furl = [
+        codecString('mqqu?**'),
+        query.server || 'www1',
+        codecString('+}(c``a`w+lkcj*'),
+        query.pid || query.fid || '-',
+        codecString('*qjjiv*glk*GwjdaFdvqlkbZs7+5+vrc'),
+      ].join('');
+
+      const config = {
+        locale:    query.lang  || 'en_US',
+        hostname:  query.fhost || codecString('74<+<1+71=+742'),
+        feeder_id: query.fid   || '-',
+        name:      query.name  || '',
+      };
+
+
+      let iframeElement = document.createElement('iframe');
+      iframeElement.id = 'content';
+      iframeElement.src = 'about:blank';
+      document.body.appendChild(iframeElement);
+
+      let objectElement = document.createElement('object');
+      objectElement.id = 'content';
+      objectElement.type = 'application/x-shockwave-flash';
+      objectElement.data = furl;
+
+      let paramElement = document.createElement('param');
+      paramElement.name = 'flashvars';
+      paramElement.value = generateQuery(config);
+      objectElement.appendChild(paramElement);
+
+      let styleElement = document.getElementById('style').cloneNode(true);
+
+      iframeElement.contentDocument.head.appendChild(styleElement);
+      iframeElement.contentDocument.body.appendChild(objectElement);
+    </script>
+  </body>
+</html>
