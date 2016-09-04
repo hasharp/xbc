@@ -33,7 +33,7 @@
   </head>
   <body>
     <p id="help">
-      pid, lang, fhost, fid, name
+      host, id, lang, name
     </p>
 
     <script type="text/javascript">
@@ -67,8 +67,8 @@
 
       const config = {
         locale:    query.lang  || 'en_US',
-        hostname:  query.fhost || codecString('74<+<1+71=+742'),
-        feeder_id: query.fid   || '-',
+        hostname:  query.host  || codecString('74<+<1+71=+742'),
+        feeder_id: query.id    || '-',
         name:      query.name  || '',
       };
 
