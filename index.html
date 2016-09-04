@@ -65,12 +65,11 @@
 
       const furl = 'v2.0.swf';
 
-      const config = {
-        locale:    query.lang  || 'en_US',
-        hostname:  query.host  || codecString('74<+<1+71=+742'),
-        feeder_id: query.id    || '-',
-        name:      query.name  || '',
-      };
+      let config = {};
+      config[codecString('ijfdi`')]    = query.lang  || 'en_US';
+      config[codecString('mjvqkdh`')]  = query.host  || codecString('74<+<1+71=+742');
+      config[codecString('c``a`wZla')] = query.id    || '-';
+      config[codecString('kdh`')]      = query.name  || '';
 
 
       let iframeElement = document.createElement('iframe');
